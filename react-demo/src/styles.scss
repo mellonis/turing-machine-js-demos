@@ -1,0 +1,60 @@
+.app {
+  $selector: &;
+
+  &_running {
+    #{$selector}__tape-head {
+      color: red;
+    }
+  }
+
+  &_halted {
+    #{$selector}__tape-head {
+      color: black;
+    }
+  }
+
+  &__tape-wrapper {
+    font-family: monospace;
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  &__tape {
+    overflow: hidden;
+    padding: 1rem;
+    white-space: pre;
+  }
+
+  &__tape-cell {
+    border: 1px solid black;
+    margin-left: -1px;
+    padding: .4rem;
+  }
+
+  &__controls {
+    text-align: center;
+  }
+
+  &__control {
+    background: none;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 0 2px 2px #00000005;
+    padding: .4rem .8rem;
+
+    &:disabled {
+      filter: grayscale(1)
+    }
+
+    &:not(:disabled) {
+      &:hover {
+        box-shadow: 0 0 2px 2px #00000033;
+        cursor: pointer;
+      }
+
+      &:active {
+        box-shadow: 0 0 2px 2px #00000066;
+      }
+    }
+  }
+}
