@@ -1,27 +1,26 @@
-import TuringMachine, {
+import {
   Alphabet,
-  Tape,
-  TapeBlock,
-  State,
-  movements,
   haltState,
   ifOtherSymbol,
+  movements,
+  State,
+  Tape,
+  TapeBlock,
+  TuringMachine,
 } from '@turing-machine-js/machine';
 
-const alphabet = new Alphabet({
-  symbolList: [' ', 'a', 'b', 'c', '*'],
-});
+const alphabet = new Alphabet([' ', 'a', 'b', 'c', '*']);
 
 function getInitialTape() {
   return new Tape({
     alphabet,
-    symbolList: ['a', 'b', 'c', 'b', 'a'],
+    symbols: ['a', 'b', 'c', 'b', 'a'],
     viewportWidth: 13,
   });
 }
 
 const tapeBlock = new TapeBlock({
-  tapeList: [getInitialTape()],
+  tapes: [getInitialTape()],
 });
 const initialState = new State({
   [tapeBlock.symbol(['b'])]: {
@@ -57,7 +56,7 @@ function resetTape() {
 }
 
 function getMachineSession() {
-  return machine.runStepByStep({ initialState });
+  return machine.runStepByStep({initialState});
 }
 
 export function getMachine() {
@@ -65,6 +64,6 @@ export function getMachine() {
 
   return {
     machineSession: getMachineSession(),
-    tape: machine.tapeBlock.tapeList[0],
+    tape: machine.tapeBlock.tapes[0],
   };
 }
